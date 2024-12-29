@@ -57,10 +57,18 @@ import os
 from dotenv import load_dotenv
 
 # 🌍 Load environment variables
+# 🌍 Load environment variables
 load_dotenv()
-os.environ['LANGCHAIN_API_KEY'] = os.getenv("LANGCHAIN_API_KEY")
+
+api_key = os.getenv("LANGCHAIN_API_KEY")
+if api_key is None:
+    st.error("⚠️ LANGCHAIN_API_KEY not found in environment variables!")
+    raise ValueError("LANGCHAIN_API_KEY environment variable is not set")
+
+os.environ['LANGCHAIN_API_KEY'] = api_key
 os.environ["LANGCHAIN_TRACKING_V2"] = 'true'
 os.environ["LANGCHAIN_PROJECT"] = "Ultimate AI Chatbot Pro"
+
 
 # 🎨 Page Configuration
 st.set_page_config(
