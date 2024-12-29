@@ -111,7 +111,7 @@ with st.sidebar:
 # 🤖 Response Generation Function
 def generate_response(question, engine, temperature, max_tokens):
     try:
-        llm = Ollama(model=engine, temperature=temperature)
+        llm = Ollama(model=engine, temperature=temperature, api_url="http://your-api-url.com")
         output_parser = StrOutputParser()
         chain = prompt | llm | output_parser
         return chain.invoke({"question": question})
@@ -135,7 +135,7 @@ with st.container():
 # 📢 Display Latest Response First
 if send and user_input:
     with st.spinner("🤔 Thinking..."):
-        response = generate_response(user_input, engine, temperature, max_tokens)
+        response = generate_response(user_input, engine, temperature, max_tokens, api_url="http://your-api-url.com")
         st.session_state.latest_response = response
         st.session_state.chat_history.insert(0, {"user": user_input, "ai": response})
         st.rerun()
