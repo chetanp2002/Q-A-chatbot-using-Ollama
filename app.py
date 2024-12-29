@@ -111,7 +111,7 @@ with st.sidebar:
 # 🤖 Response Generation Function
 def generate_response(question, engine, temperature, max_tokens):
     try:
-        llm = Ollama(model=engine, temperature=temperature, api_url="http://your-api-url.com")
+        llm = Ollama(model=engine, temperature=temperature)
         output_parser = StrOutputParser()
         chain = prompt | llm | output_parser
         return chain.invoke({"question": question})
