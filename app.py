@@ -60,7 +60,9 @@ from dotenv import load_dotenv
 # 🌍 Load environment variables
 load_dotenv()
 
-api_key = os.getenv("LANGCHAIN_API_KEY")
+# api_key = os.getenv("LANGCHAIN_API_KEY")
+api_key = st.secrets["LANGCHAIN_API_KEY"]
+
 if api_key is None:
     st.error("⚠️ LANGCHAIN_API_KEY not found in environment variables!")
     raise ValueError("LANGCHAIN_API_KEY environment variable is not set")
