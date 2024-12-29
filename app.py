@@ -135,7 +135,7 @@ with st.container():
 # 📢 Display Latest Response First
 if send and user_input:
     with st.spinner("🤔 Thinking..."):
-        response = generate_response(user_input, engine, temperature, max_tokens, api_url="http://your-api-url.com")
+        response = generate_response(user_input, engine, temperature, max_tokens)
         st.session_state.latest_response = response
         st.session_state.chat_history.insert(0, {"user": user_input, "ai": response})
         st.rerun()
